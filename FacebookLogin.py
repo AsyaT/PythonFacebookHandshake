@@ -1,4 +1,10 @@
 from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException
+
+import time
 import Constants
 
 browser = webdriver.Firefox()
@@ -6,13 +12,27 @@ browser.get('https://www.facebook.com/login.php')
 
 # insert email and password
 email_field = browser.find_element_by_id("email")
-email_field.send_keys(Constants.LOGIN);
+email_field.send_keys(Constants.LOGIN)
 
 password_field = browser.find_element_by_id("pass")
-password_field.send_keys(Constants.PASSWORD);
+password_field.send_keys(Constants.PASSWORD)
 
-submit_button = browser.find_element_by_id("loginbutton");
-submit_button.submit();
+submit_button = browser.find_element_by_id("loginbutton")
+submit_button.submit()
 
-# go to page of person 1
+# validate login is successful
+time.sleep(15)
 
+try:
+	top_profile_element_id = "profile_pic_header_" + Constants.ID
+	profile_page = WebDriverWait(browser, 35).until(EC.presence_of_element_located((By.ID, top_profile_element_id)))
+	print ("Profile page is loaded successfuly!")
+except NoSuchElementException:
+	print ("This is not profile page!")
+
+# go to page of person one
+
+person_1_id = "100009757303780"
+browser.get('https://www.facebook.com/profile.php?id=' + person_1_id)
+friends_tab = browser.find_element_by_xpath('//a[@data-tab-key="friends"]')
+friends_tab.click()
