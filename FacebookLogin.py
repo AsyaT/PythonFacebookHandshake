@@ -22,9 +22,6 @@ password_field.send_keys(Constants.PASSWORD)
 submit_button = browser.find_element_by_id("loginbutton")
 submit_button.submit()
 
-# validate login is successful
-time.sleep(15)
-
 try:
 	top_profile_element_id = "profile_pic_header_" + Constants.ID
 	profile_page = WebDriverWait(browser, 35).until(EC.presence_of_element_located((By.ID, top_profile_element_id)))
