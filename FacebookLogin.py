@@ -6,6 +6,8 @@ from selenium.common.exceptions import NoSuchElementException
 
 import time
 import Constants
+from Person import Person
+import DatabaseProvider
 
 browser = webdriver.Firefox()
 browser.get('https://www.facebook.com/login.php')
@@ -32,7 +34,18 @@ except NoSuchElementException:
 
 # go to page of person one
 
-person_1_id = "100009757303780"
-browser.get('https://www.facebook.com/profile.php?id=' + person_1_id)
+person_1 = Person("100009757303780")
+
+browser.get('https://www.facebook.com/profile.php?id=' + person_1.id)
+
+person_1.setName("") # TODO: find name
+
+node_1 = DatabaseProvider.CreatePerson(person_1)
+
 friends_tab = browser.find_element_by_xpath('//a[@data-tab-key="friends"]')
 friends_tab.click()
+
+person_2 = Person("") # TODO: find first friend
+node_2 = DatabaseProvider.CreatePerson(person_2)
+
+DatabaseProvider.MakeFriends(node_1,node_2)
