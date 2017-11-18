@@ -35,7 +35,9 @@ person_1 = Person("100009757303780")
 
 browser.get('https://www.facebook.com/profile.php?id=' + person_1.id)
 
-person_1.setName("") # TODO: find name
+full_person_name = browser.find_element_by_xpath("//span[@id='fb-timeline-cover-name']/a").text
+print("Full name is " + full_person_name)
+person_1.setName(full_person_name)
 
 node_1 = DatabaseProvider.CreatePerson(person_1)
 
