@@ -45,7 +45,7 @@ node_1 = DatabaseProvider.CreatePerson(person_1)
 friends_tab = browser.find_element_by_xpath('//a[@data-tab-key="friends"]')
 friends_tab.click()
 
-person_2 = Person("") # TODO: find first friend
+person_2 = Person("", "") # TODO: find first friend
 node_2 = DatabaseProvider.CreatePerson(person_2)
 
 DatabaseProvider.MakeFriends(node_1,node_2)
