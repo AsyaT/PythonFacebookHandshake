@@ -1,0 +1,12 @@
+from Person import Person
+import DatabaseProvider
+
+person_1 = Person("100009757303780")
+person_1.setName("Name1 Surname1")
+node_1 = DatabaseProvider.CreatePerson(person_1)
+
+person_2 = Person("86868468458")
+person_2.setName("Name2 Surname2")
+node_2 = DatabaseProvider.CreatePerson(person_2)
+
+DatabaseProvider.MakeFriends(node_1,node_2)
