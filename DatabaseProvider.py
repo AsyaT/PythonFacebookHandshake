@@ -13,7 +13,6 @@ def CreatePerson(person):
 
 def MakeFriends(friend_node_1, friend_node_2):
 	existing_relation = graph.match_one(friend_node_1, "KNOWS", friend_node_2)
-	print(existing_relation)
 	if existing_relation is None:
 		print("Create new relation")
 		rel = Relationship(friend_node_1, "KNOWS", friend_node_2)
