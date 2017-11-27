@@ -1,7 +1,7 @@
 from py2neo import Graph, Node, Relationship
 graph = Graph()
 
-def CreatePerson(person):
+def CreatePersonNode(person):
 	existing_person = graph.find_one("Person", "id",person.id)
 	if existing_person is None:
 		node = Node("Person", name=person.name, id = person.id)
