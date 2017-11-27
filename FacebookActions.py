@@ -34,7 +34,7 @@ def VisitProfilePage(browser, user_id):
 	browser.get('https://www.facebook.com/profile.php?id=' + user_id)
 	
 	
-def CreateStartUserOnProfilePage(browser,user_id)
+def CreateStartUserOnProfilePage(browser,user_id):
 	full_person_name = browser.find_element_by_xpath("//span[@id='fb-timeline-cover-name']/a").text
 	return Person(user_id, full_person_name)
 	

@@ -4,7 +4,6 @@ import DatabaseProvider
 import FacebookActions
 
 def RecurrentFriendsSaver(browser, current_user_id, distination_user_id):
-
 	FacebookActions.VisitProfilePage(browser, current_user_id)
 	current_person = FacebookActions.CreateStartUserOnProfilePage(browser, current_user_id)
 	
