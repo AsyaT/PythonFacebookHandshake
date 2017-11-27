@@ -44,9 +44,31 @@ node_1 = DatabaseProvider.CreatePerson(person_1)
 
 friends_tab = browser.find_element_by_xpath('//a[@data-tab-key="friends"]')
 friends_tab.click()
+print("Start scroll")
+
+SCROLL_PAUSE_TIME = 2
+
+# Get scroll height
+last_height = browser.execute_script("return document.body.scrollHeight")
+
+while True:
+    # Scroll down to bottom
+    browser.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+    # Wait to load page
+    time.sleep(SCROLL_PAUSE_TIME)
+
+    # Calculate new scroll height and compare with last scroll height
+    new_height = browser.execute_script("return document.body.scrollHeight")
+    if new_height == last_height:
+        break
+    last_height = new_height
+
+print("End scroll")
+
 
 try:
-	friends_page = WebDriverWait(browser, 55).until(EC.presence_of_element_located((By.ID, "pagelet_timeline_medley_friends")))
+	friends_page = WebDriverWait(browser, 555).until(EC.presence_of_element_located((By.ID, "pagelet_timeline_medley_friends")))
 	print("List of friends is loaded")
 	friends_container = browser.find_element_by_xpath('//ul[@class="uiList _262m _4kg"]')
 	friends_list = friends_container.find_elements_by_xpath('//div[@class="uiProfileBlockContent"]//a')
